@@ -1,0 +1,391 @@
+/* General Styles (keep existing) */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f8f8;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    margin-top: 0;
+    color: #007bff; /* Ocean Blue for headings */
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    text-decoration: none;
+    color: #ff9900; /* Orange for links */
+}
+
+a:hover {
+    color: #e68a00;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #ff9900; /* Orange button */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #e68a00;
+}
+
+/* Navbar (keep existing) */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent dark for readability over hero */
+    color: #fff;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.navbar .logo img {
+    height: 40px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
+.navbar .logo h1 {
+    font-size: 1.8em;
+    margin: 0;
+    color: #fff;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-right: 20px;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: #fff;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff9900; /* Orange on hover */
+}
+
+/* Hero Section (keep existing, update background-image if you have one) */
+.hero {
+    height: 600px; /* Adjust as needed */
+    background-image: url('hero_background.jpg'); /* Uncomment and change if you have an image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    padding-top: 80px; /* To account for fixed navbar */
+    margin-bottom: 40px;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.hero h2 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-top: 0;
+    color: #fff;
+}
+
+/* Sections (keep existing) */
+.section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.section:nth-of-type(odd) {
+    background-color: #fff;
+}
+
+.colored-section {
+    background-color: #e0f2f7; /* Light blue background for contrast */
+}
+
+/* ---- Carousel Styles (NEW) ---- */
+.carousel-container {
+    position: relative;
+    width: 80%; /* Adjust as needed */
+    margin: 40px auto;
+    overflow: hidden; /* Hides slides outside the view */
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth slide transition */
+}
+
+.carousel-slide {
+    width: 100%; /* Each slide takes full container width */
+    flex-shrink: 0; /* Prevents slides from shrinking */
+    padding: 30px;
+    box-sizing: border-box; /* Include padding in width */
+    display: flex; /* Arrange image and note side-by-side */
+    flex-direction: column; /* Stack for smaller screens */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.carousel-slide img {
+    max-width: 90%; /* Max width for product images */
+    height: auto;
+    max-height: 400px; /* Control image height */
+    object-fit: contain; /* Ensure image fits without cropping */
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.product-note {
+    max-width: 600px; /* Limit width of text for readability */
+    text-align: left;
+    padding: 0 20px;
+}
+
+.product-note h3 {
+    color: #ff9900; /* Orange for product titles */
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.product-note p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.8;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 123, 255, 0.7); /* Ocean Blue with transparency */
+    color: #fff;
+    border: none;
+    padding: 15px 10px;
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 123, 255, 1);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Contact Form (keep existing) */
+.contact-form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+/* FAQ (keep existing) */
+.faq-item {
+    text-align: left;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.faq-item h3 {
+    cursor: pointer;
+    color: #007bff;
+    position: relative;
+    padding-right: 30px;
+}
+
+.faq-item p {
+    display: none; /* Initially hide answers */
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Footer (keep existing) */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+footer .social-links a {
+    color: #fff;
+    margin: 0 10px;
+}
+
+footer .social-links a:hover {
+    color: #ff9900;
+}
+
+/* Responsive adjustments (update for carousel) */
+@media (min-width: 768px) {
+    .carousel-slide {
+        flex-direction: row; /* Image and text side-by-side on larger screens */
+        justify-content: space-around;
+        gap: 30px;
+    }
+    .carousel-slide img {
+        margin-bottom: 0; /* Remove bottom margin when side-by-side */
+        max-width: 40%;
+    }
+    .product-note {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 10px;
+    }
+
+    .navbar .logo {
+        margin-bottom: 10px;
+    }
+
+    .navbar .logo h1 {
+        font-size: 1.5em;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .hero h2 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .carousel-container {
+        width: 95%; /* Adjust width for smaller screens */
+    }
+
+    .carousel-slide {
+        padding: 20px 10px;
+    }
+
+    .carousel-slide img {
+        max-width: 80%;
+    }
+
+    .product-note h3 {
+        font-size: 1.5em;
+    }
+
+    .product-note p {
+        font-size: 0.9em;
+    }
+
+    .carousel-btn {
+        padding: 10px 8px;
+        font-size: 1.2em;
+    }
+}
