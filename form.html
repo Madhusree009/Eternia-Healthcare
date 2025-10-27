@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register</title>
+    <!-- Link to Font Awesome for the Account Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9; /* Light grey background */
+            color: #333;
+        }
+
+        /* Color Variables */
+        :root {
+            --ocean-blue: #1E90FF;
+            --orange: #FFA500;
+            --text-color: #333;
+        }
+
+        /* Navbar Styles (Simplified for Login Page) */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: var(--ocean-blue);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Main Container and Form Card */
+        .container {
+            max-width: 450px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--ocean-blue);
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        /* Form Grouping and Inputs */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+        
+        /* New container for password input and toggle icon */
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center; /* Ensures vertical alignment */
+            width: 100%;
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            width: 100%; /* Default to 100% width */
+            /* FIX: Add box-sizing to prevent padding/border from causing overflow */
+            box-sizing: border-box; 
+        }
+        
+        .password-container input {
+            padding-right: 40px; /* Make space for the icon in password fields */
+        }
+
+        .form-group input:focus {
+            border-color: var(--ocean-blue);
+            outline: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.2s;
+        }
+
+        .password-toggle:hover {
+            color: var(--ocean-blue);
+        }
+
+        /* Action Buttons */
+        .action-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--orange);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        .action-button:hover {
+            background-color: #ff8c00; 
+            transform: translateY(-1px);
+        }
+
+        /* Toggle Link for switching forms */
+        .toggle-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .toggle-link a {
+            color: var(--ocean-blue);
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .toggle-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Error/Success Message Styling */
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* Form Views */
+        #register-view {
+            display: none; /* Registration is hidden by default */
+        }
+
+        /* Responsiveness: Mobile Layout */
+        @media (max-width: 500px) {
+            .container {
+                margin: 20px 10px;
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">User Authentication</div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <!-- 1. Login Form View -->
+        <div id="login-view">
+            <h1>User Login</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="action-button">Log In</button>
+            </form>
+            <div id="login-message" class="message"></div>
+            <p class="toggle-link">
+                Don't have an account? <a onclick="toggleView('register')">Register here</a>
+            </p>
+        </div>
+
+        <!-- 2. Registration Form View -->
+        <div id="register-view">
+            <h1>Create Account</h1>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-username">User Name</label>
+                    <input type="text" id="reg-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-contact-number">Contact Number (10 digits)</label>
+                    <input type="text" id="reg-contact-number" placeholder="e.g., 1234567890" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email Address</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password (8 chars: letters, numbers, special)</label>
+                    <!-- NEW: Password container for toggle icon -->
+                    <div class="password-container">
+                        <input type="password" id="reg-password" required>
+                        <i class="fas fa-eye password-toggle" id="reg-password-toggle" onclick="togglePasswordVisibility('reg-password', 'reg-password-toggle')"></i>
+                    </div>
+                </div>
+                <button type="submit" class="action-button">Register</button>
+            </form>
+            <div id="register-message" class="message"></div>
+            <p class="toggle-link">
+                Already have an account? <a onclick="toggleView('login')">Log In here</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // --- Helper Functions ---
+
+        /**
+         * Displays a message (success or error) in the specified message element.
+         */
+        function displayMessage(elementId, message, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.style.display = 'block';
+            el.className = 'message ' + type;
+            
+            // Hide the message after 4 seconds
+            setTimeout(() => {
+                el.style.display = 'none';
+            }, 4000);
+        }
+
+        /**
+         * Cleans a number string and checks if it contains exactly 10 digits.
+         */
+        function isValidPhoneNumber(numberString) {
+            // Remove common non-digit characters (spaces, dashes, parentheses)
+            const cleanedNumber = numberString.replace(/[\s\-\(\)]/g, '');
+            return /^\d{10}$/.test(cleanedNumber);
+        }
+
+        /**
+         * Basic email format validation using a simple regex pattern: 
+         * [one or more chars NOT @ or space] @ [one or more chars NOT @ or space] . [one or more chars NOT @ or space]
+         */
+        function isValidEmail(email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+        
+        /**
+         * Checks if the password meets all registration criteria:
+         * 1. Exactly 8 characters long.
+         * 2. Contains no spaces.
+         * 3. Contains at least one alphabet (a-z, A-Z).
+         * 4. Contains at least one number (0-9).
+         * 5. Contains at least one special character (non-alphanumeric/non-space).
+         */
+        function isValidRegistrationPassword(password) {
+            const minLength = 8;
+            const maxLength = 8;
+
+            if (password.length < minLength || password.length > maxLength) {
+                return { valid: false, reason: 'must be exactly 8 characters long.' };
+            }
+
+            if (password.includes(' ')) {
+                return { valid: false, reason: 'must not contain spaces.' };
+            }
+
+            // Check for at least one letter
+            if (!/[a-zA-Z]/.test(password)) {
+                return { valid: false, reason: 'must contain at least one letter.' };
+            }
+
+            // Check for at least one number
+            if (!/\d/.test(password)) {
+                return { valid: false, reason: 'must contain at least one number.' };
+            }
+            
+            // Check for at least one special character (not letter, not number, not space)
+            if (!/[^a-zA-Z0-9\s]/.test(password)) {
+                return { valid: false, reason: 'must contain at least one special character (e.g., @, #, $).' };
+            }
+
+            return { valid: true };
+        }
+
+        /**
+         * Toggles the visibility of a password field and updates the icon.
+         */
+        function togglePasswordVisibility(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        /**
+         * Toggles visibility between the login and registration forms.
+         * @param {string} view - 'login' or 'register'
+         */
+        function toggleView(view) {
+            const loginView = document.getElementById('login-view');
+            const registerView = document.getElementById('register-view');
+
+            if (view === 'login') {
+                loginView.style.display = 'block';
+                registerView.style.display = 'none';
+            } else if (view === 'register') {
+                loginView.style.display = 'none';
+                registerView.style.display = 'block';
+            }
+            
+            // Clear messages when switching views
+            document.getElementById('login-message').style.display = 'none';
+            document.getElementById('register-message').style.display = 'none';
+        }
+
+
+        // --- Authentication Logic ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hardcoded credentials for successful login
+            const TARGET_EMAIL = 'userone@gmail.com';
+            const TARGET_PASSWORD = 'User@1';
+
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+
+            // --- Login Handler ---
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value;
+                const messageId = 'login-message';
+
+                if (!email || !password) {
+                    displayMessage(messageId, 'Please enter both email and password.', 'error');
+                    return;
+                }
+
+                if (!isValidEmail(email)) {
+                    displayMessage(messageId, 'Please enter a valid email format (e.g., user@example.com).', 'error');
+                    return;
+                }
+                
+                // Check against hardcoded credentials
+                if (email === TARGET_EMAIL && password === TARGET_PASSWORD) {
+                    // Successful Login
+                    loginForm.reset();
+                    displayMessage(messageId, 'Login successful! Redirecting to action page...', 'success');
+                    
+                    // Simulate redirection after a short delay
+                    setTimeout(() => {
+                        console.log('Simulating redirect to action page...');
+                        // In a real application, you would use window.location.href to navigate
+                   window.location.href = "todo.html";
+                    }, 1000);
+
+                } else {
+                    // Failed Login
+                    displayMessage(messageId, 'Invalid email or password. Please try again.', 'error');
+                }
+            });
+
+
+            // --- Registration Handler ---
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('reg-username').value.trim();
+                const number = document.getElementById('reg-contact-number').value.trim();
+                const email = document.getElementById('reg-email').value.trim();
+                const password = document.getElementById('reg-password').value;
+                const messageId = 'register-message';
+
+                // 1. Check if all fields are filled
+                if (!username || !number || !email || !password) {
+                    displayMessage(messageId, 'Please fill in all required registration fields.', 'error');
+                    return;
+                }
+
+                // 2. Validate Contact Number (10 digits)
+                if (!isValidPhoneNumber(number)) {
+                    displayMessage(messageId, 'Contact number must be a valid 10-digit number.', 'error');
+                    return;
+                }
+
+                // 3. Validate Email Format
+                if (!isValidEmail(email)) {
+                    displayMessage(messageId, 'Please enter a valid email format (e.g., user@example.com).', 'error');
+                    return;
+                }
+
+                // 4. Validate Password Format (8 chars, no space, mixed)
+                const passwordValidation = isValidRegistrationPassword(password);
+                if (!passwordValidation.valid) {
+                    displayMessage(messageId, 'Password ' + passwordValidation.reason, 'error');
+                    return;
+                }
+
+                // Simulate successful registration (no actual API call)
+                registerForm.reset();
+                displayMessage(messageId, 'Registration successful! You can now log in.', 'success');
+                
+                // Optional: Automatically switch to login screen after successful registration
+                setTimeout(() => { toggleView('login'); }, 2000); 
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- Email: userone@gmail.com
+
+Password: User@1 -->

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Account Settings</title>
+    <!-- Link to Font Awesome for the Account Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9; /* Light grey background */
+            color: #333;
+        }
+
+        /* Color Variables */
+        :root {
+            --ocean-blue: #1E90FF;
+            --orange: #FFA500;
+            --text-color: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: var(--ocean-blue);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .account-icon {
+            font-size: 1.8em;
+            cursor: pointer;
+            color: white;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--ocean-blue);
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        /* Profile Update Card Styles */
+        .profile-card {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .profile-card h2 {
+            color: var(--orange);
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--orange);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--ocean-blue);
+            outline: none;
+        }
+
+        .update-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--ocean-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .update-button:hover {
+            background-color: #1a7fc5; /* Slightly darker blue */
+            transform: translateY(-1px);
+        }
+
+        /* Error/Success Message Styling */
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* Responsiveness: Mobile Layout */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .container {
+                margin: 20px 10px;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+        }
+     
+ 
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">Account Settings</div>
+        <div class="navbar-icons">
+            <i class="fas fa-user-circle account-icon"></i>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <h1>Update Your Profile Information</h1>
+
+        <!-- 1. Update Name -->
+        <div class="profile-card">
+            <h2>Update User Name</h2>
+            <div class="form-group">
+                <label for="username">New User Name</label>
+                <input type="text" id="username" value="Jane Doe" required>
+            </div>
+            <button class="update-button" onclick="updateUserName()">Update Name</button>
+            <div id="name-message" class="message"></div>
+        </div>
+
+        <!-- 2. Update Contact Number -->
+        <div class="profile-card">
+            <h2>Update Contact Number</h2>
+            <div class="form-group">
+                <label for="contact-number">New Contact Number (10 digits)</label>
+                <input type="text" id="contact-number" value="555-123-4567" placeholder="e.g., 1234567890" required>
+            </div>
+            <button class="update-button" onclick="updateContactNumber()">Update Number</button>
+            <div id="contact-message" class="message"></div>
+        </div>
+
+        <!-- 3. Update Email Address -->
+        <div class="profile-card">
+            <h2>Update Email Address</h2>
+            <div class="form-group">
+                <label for="email-address">New Email Address</label>
+                <input type="email" id="email-address" value="jane.doe@example.com" required>
+            </div>
+            <button class="update-button" onclick="updateEmail()">Update Email</button>
+            <div id="email-message" class="message"></div>
+        </div>
+
+        <!-- 4. Update Password -->
+        <div class="profile-card">
+            <h2>Update Password</h2>
+            <div class="form-group">
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" required>
+            </div>
+            <div class="form-group">
+                <label for="new-password">New Password (8 characters, no spaces)</label>
+                <input type="password" id="new-password" required>
+            </div>
+            <button class="update-button" onclick="updatePassword()">Update Password</button>
+            <div id="password-message" class="message"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- Validation Helper Functions ---
+
+        /**
+         * Cleans a number string and checks if it contains exactly 10 digits.
+         */
+        function isValidPhoneNumber(numberString) {
+            // Remove common non-digit characters (spaces, dashes, parentheses)
+            const cleanedNumber = numberString.replace(/[\s\-\(\)]/g, '');
+            return /^\d{10}$/.test(cleanedNumber);
+        }
+
+        /**
+         * Basic email format validation using a simple regex pattern.
+         */
+        function isValidEmail(email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+        
+        /**
+         * Checks if the password is exactly 8 characters long and contains no spaces.
+         */
+        function isValidPasswordFormat(password) {
+            // Check for spaces
+            if (password.includes(' ')) {
+                return false;
+            }
+            // Check for exact 8 characters length
+            if (password.length !== 8) {
+                return false;
+            }
+            return true;
+        }
+
+        /**
+         * Displays a message (success or error) in the specified message element.
+         */
+        function displayMessage(elementId, message, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.style.display = 'block';
+            el.className = 'message ' + type;
+            
+            // Hide the message after 3 seconds
+            setTimeout(() => {
+                el.style.display = 'none';
+            }, 3000);
+        }
+
+        // --- Update Functions ---
+
+        function updateUserName() {
+            const newName = document.getElementById('username').value.trim();
+            if (newName.length < 2) {
+                displayMessage('name-message', 'User name must be at least 2 characters long.', 'error');
+                return;
+            }
+            // Simulate API call success
+            displayMessage('name-message', 'User Name updated successfully to: ' + newName, 'success');
+        }
+
+        function updateContactNumber() {
+            const newNumber = document.getElementById('contact-number').value.trim();
+            if (!isValidPhoneNumber(newNumber)) {
+                displayMessage('contact-message', 'Contact number must be a valid 10-digit number.', 'error');
+                return;
+            }
+            // Simulate API call success
+            displayMessage('contact-message', 'Contact Number updated successfully to: ' + newNumber, 'success');
+        }
+
+        function updateEmail() {
+            const newEmail = document.getElementById('email-address').value.trim();
+            if (!isValidEmail(newEmail)) {
+                displayMessage('email-message', 'Please enter a valid email address.', 'error');
+                return;
+            }
+            // Simulate API call success
+            displayMessage('email-message', 'Email Address updated successfully to: ' + newEmail, 'success');
+        }
+
+        function updatePassword() {
+            const currentPass = document.getElementById('current-password').value;
+            const newPass = document.getElementById('new-password').value;
+
+            if (currentPass === '' || newPass === '') {
+                displayMessage('password-message', 'Please fill in both password fields.', 'error');
+                return;
+            }
+            
+            // NEW VALIDATION: Check for exactly 8 characters and no spaces
+            if (!isValidPasswordFormat(newPass)) {
+                displayMessage('password-message', 'New password must be exactly 8 characters long and contain no spaces.', 'error');
+                return;
+            }
+
+            // In a real app, you would verify the current password against the stored hash first.
+            if (currentPass === newPass) {
+                displayMessage('password-message', 'New password cannot be the same as the current password.', 'error');
+                return;
+            }
+            
+            // Clear the password fields upon successful (simulated) update
+            document.getElementById('current-password').value = '';
+            document.getElementById('new-password').value = '';
+
+            // Simulate API call success
+            displayMessage('password-message', 'Password updated successfully!', 'success');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Eternia Healthcare - FAQ</title>
+     <style>
+      #clicked{
+        color: #e68a00;
+      }
+    </style>
+</head>
+<body>
+    <header>
+              <nav class="navbar">
+        <div class="nav-container">
+            <!-- Brand Name -->
+            <a href="#" class="navbar-brand">Eternia Healthcare</a>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navMenu">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="faq.html" id="checked">FAQ</a></li>
+            </ul>
+
+            <!-- Hamburger Menu Button (Mobile Only) -->
+            <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+        <div class="hero">
+            <div class="hero-content">
+                <h2>Assuring Healthier Tomorrow...</h2>
+                <p>Your trusted partner in pharmaceutical wholesale.</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+            <section id="faq" class="section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h3>What is Eternia Healthcare?</h3>
+                    <p>Eternia Healthcare is a leading pharmaceutical wholesaler providing a wide range of medical products to healthcare facilities.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How can I place an order?</h3>
+                    <p>You can place an order through our online portal (coming soon) or by contacting our sales team directly.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you offer international shipping?</h3>
+                    <p>Yes, we offer international shipping to select regions. Please contact us for more details.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Eternia Healthcare. All rights reserved.</p>
+            <!-- <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+            </div> -->
+        </div>
+    </footer>
+   <script>
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

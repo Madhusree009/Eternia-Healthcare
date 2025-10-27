@@ -1,0 +1,232 @@
+/* Global styles and Sans-Serif font */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Light grey background */
+    color: #333;
+}
+
+/* Navbar styles with ocean blue */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #1E90FF; /* Ocean Blue */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.account-icon {
+    font-size: 1.8em;
+    cursor: pointer;
+    color:white;
+    transition: color 0.2s;
+}
+
+.navbar-icons a{
+    text-decoration: none;
+}
+.account-icon:hover {
+    color: #FFA500; /* Orange hover effect */
+}
+
+/* Container for main content */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+    text-align: center;
+    color: #1E90FF; /* Ocean Blue */
+    margin-bottom: 30px;
+}
+
+/* Input Row for New Entries */
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.input-row input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
+    min-width: 0; /* Allows inputs to shrink */
+}
+
+/* Add Button styling with orange */
+#add-row-button {
+    padding: 10px 20px;
+    background-color: #FFA500; /* Orange */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+#add-row-button:hover {
+    background-color: #ff8c00; /* Darker orange on hover */
+}
+
+/* Table styles */
+#todo-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#todo-table th, #todo-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+/* Header row styling with ocean blue */
+#todo-table thead tr {
+    background-color: #1E90FF; /* Ocean Blue */
+    color: white;
+}
+
+/* Alternating row colors for readability */
+#todo-table tbody tr:nth-child(even) {
+    background-color: #f0f8ff; /* Lightest blue for even rows */
+}
+
+#todo-table tbody tr:hover {
+    background-color: #e6f7ff; /* Slightly darker hover color */
+}
+
+/* Check Button Styles */
+.check-button {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.check-button.unchecked {
+    background-color: #fff;
+    color: #1E90FF; /* Ocean Blue text */
+    border: 2px solid #1E90FF; /* Ocean Blue border */
+}
+
+.check-button.checked {
+    background-color: #FFA500; /* Orange background when checked */
+    color: white;
+}
+
+/* Limit Message */
+.limit-message {
+    text-align: right;
+    margin-top: 15px;
+    font-style: italic;
+    color: #666;
+}
+
+/* Style for when the row limit is reached */
+.limit-reached {
+    color: red;
+    font-weight: bold;
+}
+
+/* ======================================= */
+/* RESPONSIVENESS (Media Queries)          */
+/* ======================================= */
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 15px;
+    }
+
+    .container {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    /* Stack inputs vertically for small screens */
+    .input-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .input-row input {
+        width: 100%;
+    }
+
+    #add-row-button {
+        width: 100%; /* Full width for the button */
+    }
+
+    /* Hide table header and treat rows as blocks */
+    #todo-table {
+        border: 0;
+    }
+
+    #todo-table thead {
+        /* Visually hide the table header */
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    #todo-table tr {
+        display: block;
+        margin-bottom: 0.625em; /* Space between "cards" */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+    }
+
+    #todo-table td {
+        /* Cells become full-width rows */
+        border-bottom: 1px solid #ddd;
+        display: block;
+        text-align: right;
+        padding: 8px 10px;
+    }
+
+    /* Use data-label attribute to display column name before the content */
+    #todo-table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: #1E90FF; /* Ocean Blue label */
+    }
+
+    /* Apply the data-label to existing rows for mobile view */
+    #todo-table tr td:nth-of-type(1) { /* Doctor's Name */
+        border-top: 0; /* Remove top border for the first item in the mobile card */
+    }
+    #todo-table tr td:nth-of-type(4) { /* Done Button */
+        text-align: center;
+        border-bottom: 0; /* Remove bottom border for the last item in the mobile card */
+    }
+}

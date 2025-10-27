@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="todostyle.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-brand">Appointment Tracker</div>
+        <div class="navbar-icons">
+              <a href="account.html"><i class="fas fa-user-circle account-icon" title="Account"></i></a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Medical Appointments To-Do</h1>
+
+        <div class="input-row">
+            <input type="text" id="doctor-name-input" placeholder="Doctor's Name" required>
+            <input type="text" id="doctor-number-input" placeholder="Doctor's Number" required>
+            <input type="text" id="area-input" placeholder="Area" required>
+            <button id="add-row-button">Add Appointment</button>
+        </div>
+
+        <table id="todo-table">
+            <thead>
+                <tr>
+                    <th>Doctor's Name</th>
+                    <th>Doctor's Number</th>
+                    <th>Area</th>
+                    <th>Done</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dr. Smith</td>
+                    <td>(555) 123-4567</td>
+                    <td>Downtown Clinic</td>
+                    <td><button class="check-button unchecked">☐</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="limit-message">
+            Current Rows: <span id="row-count">1</span> / 160
+        </p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

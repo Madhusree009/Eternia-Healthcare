@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Eternia Healthcare - About</title>
+    <style>
+      #clicked{
+        color: #e68a00;
+      }
+    </style>
+</head>
+<body>
+    <header>
+         <nav class="navbar">
+        <div class="nav-container">
+            <!-- Brand Name -->
+            <a href="#" class="navbar-brand">Eternia Healthcare</a>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navMenu">
+                <li><a href="about.html" id="checked">About Us</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+
+            <!-- Hamburger Menu Button (Mobile Only) -->
+            <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+        
+        <div class="hero">
+            <div class="hero-content">
+                <h2>Assuring Healthier Tomorrow...</h2>
+                <p>Your trusted partner in pharmaceutical wholesale.</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+          <section id="about" class="section">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>Eternia Healthcare is a leading pharmacy wholesaler dedicated to providing high-quality pharmaceutical products to pharmacies, hospitals, and healthcare providers. With a commitment to excellence and a vision for a healthier future, we ensure reliable supply chains and exceptional customer service.</p>
+                <p>Our extensive network and stringent quality control measures guarantee that our partners receive only the best. We believe in building lasting relationships based on trust, integrity, and mutual growth.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Eternia Healthcare. All rights reserved.</p>
+            <!-- <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+            </div> -->
+        </div>
+    </footer>
+   <script>
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
