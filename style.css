@@ -354,7 +354,7 @@ footer .social-links a:hover {
   
         .nav-container {
                 display: flex;
-                flex-wrap: wrap; /* Allows menu items to wrap below the brand */
+                flex-wrap: wrap-reverse; /* Allows menu items to wrap below the brand */
                 height: auto;
                 min-height: 60px;
             }
